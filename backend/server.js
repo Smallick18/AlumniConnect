@@ -28,7 +28,7 @@ const server = http.createServer(app);
 // 2. Attach Socket.io to that server and allow CORS for our React frontend
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:5173", // Your React app's URL
+    origin: "*", // allow all (for now)
     methods: ["GET", "POST"],
   },
 });
@@ -86,6 +86,10 @@ schedule.scheduleJob('0 * * * *', async () => {
 
 app.use(cors());
 app.use(express.json());
+
+app.get("/", (req, res) => {
+  res.send("API is running...");
+});
 
 app.use('/api/users', userRoutes);
 app.use('/api/profiles', profileRoutes);

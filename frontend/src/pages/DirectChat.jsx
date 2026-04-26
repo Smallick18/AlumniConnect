@@ -1,10 +1,8 @@
 // frontend/src/pages/DirectChat.jsx
 import React, { useState, useEffect, useContext, useRef } from 'react';
-import io from 'socket.io-client';
 import API from '../services/api';
+import socket from '../socket';
 import { AuthContext } from '../context/AuthContext';
-
-const socket = io.connect('http://localhost:5000');
 
 const DirectChat = () => {
   const { user } = useContext(AuthContext);
