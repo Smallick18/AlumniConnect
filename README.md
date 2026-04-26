@@ -78,7 +78,13 @@ npm install
 npm run dev
 ```
 
-The frontend should run on `http://localhost:5173` and the backend on `http://localhost:5000`.
+The frontend should run on `http://localhost:5173` and the backend on `http://localhost:5000` during local development.
+
+For production, set `VITE_API_URL` to your deployed backend URL in Vercel/Vite environment settings. For example:
+
+```bash
+VITE_API_URL=https://your-backend-render-app.onrender.com
+```
 
 ## Usage
 
