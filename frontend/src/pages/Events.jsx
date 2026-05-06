@@ -15,6 +15,7 @@ const Events = () => {
     location: '',
   });
   const [message, setMessage] = useState('');
+  const now = new Date();
 
   // Fetch all events when the page loads
   const fetchEvents = async () => {
@@ -78,7 +79,7 @@ const Events = () => {
           
           {/* LEFT COLUMN: The Event List */}
           <div className="md:col-span-2">
-            <h2 className="mb-8 text-4xl font-bold text-white">Upcoming Events</h2>
+            <h2 className="mb-8 text-4xl font-bold text-white">Events</h2>
             
             {events.length === 0 ? (
               <div className="p-8 bg-slate-800 border-2 border-dashed border-slate-700 rounded-lg text-center text-slate-400">
@@ -87,34 +88,25 @@ const Events = () => {
             ) : (
               <div className="space-y-4">
                 {events.map((event) => {
+                  const eventDate = new Date(event.date);
+                  const isExpired = eventDate < now;
                   const isRegistered = event.attendees?.some(attendee => attendee._id === user._id);
                   const attendeeCount = event.attendees?.length || 0;
                   const isOrganizer = event.organizer._id === user._id || user.role === 'Admin';
                   
                   return (
                     <div key={event._id} className="p-6 bg-slate-800 border border-slate-700 rounded-lg hover:border-blue-500 transition-all hover:shadow-lg hover:shadow-blue-500/50">
-                      <div className="flex justify-between items-start mb-4">
+                      <div className="flex flex-col sm:flex-row sm:justify-between sm:items-start mb-4 gap-3">
                         <h3 className="text-2xl font-bold text-white">{event.title}</h3>
-                        {isOrganizer && (
-                          <button
-                            onClick={() => {
-                              if (window.confirm('Delete this event?')) {
-                                API.delete(`/events/${event._id}`).then(() => {
-                                  fetchEvents();
-                                });
-                              }
-                            }}
-                            className="px-3 py-1 text-sm bg-red-600 text-white rounded hover:bg-red-700 transition"
-                          >
-                            🗑️ Delete
-                          </button>
-                        )}
+                        <span className={`inline-flex items-center rounded-full px-3 py-1 text-sm font-semibold ${isExpired ? 'bg-red-600 text-red-100' : 'bg-green-600 text-green-100'}`}>
+                          {isExpired ? 'Ended' : 'Upcoming'}
+                        </span>
                       </div>
                       <p className="text-slate-300 mb-4">{event.description}</p>
                       
                       <div className="flex flex-wrap items-center mb-4 text-sm text-slate-400 gap-4">
                         <span className="flex items-center">
-                          📅 {new Date(event.date).toLocaleDateString()}
+                          📅 {eventDate.toLocaleDateString()}
                         </span>
                         <span className="flex items-center">
                           📍 {event.location}
@@ -134,7 +126,7 @@ const Events = () => {
                         >
                           View Details
                         </Link>
-                        {!isOrganizer && (
+                        {!isOrganizer && !isExpired && (
                           isRegistered ? (
                             <button 
                               onClick={() => unregisterFromEvent(event._id)}
@@ -150,6 +142,9 @@ const Events = () => {
                               Register
                             </button>
                           )
+                        )}
+                        {!isOrganizer && isExpired && (
+                          <span className="px-4 py-2 rounded font-semibold bg-red-600 text-red-100">Registration Closed</span>
                         )}
                       </div>
                     </div>

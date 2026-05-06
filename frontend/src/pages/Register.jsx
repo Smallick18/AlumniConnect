@@ -94,8 +94,7 @@ const Register = () => {
               <label className="block mb-2 text-sm font-semibold text-slate-200">Full Name</label>
               <input 
                 type="text" 
-                className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                placeholder="John Doe"
+                className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
                 value={name} 
                 onChange={(e) => setName(e.target.value)} 
                 required 
@@ -105,8 +104,7 @@ const Register = () => {
               <label className="block mb-2 text-sm font-semibold text-slate-200">Email Address</label>
               <input 
                 type="email" 
-                className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                placeholder="you@example.com"
+                className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
                 value={email} 
                 onChange={(e) => setEmail(e.target.value)} 
                 required 
@@ -116,8 +114,7 @@ const Register = () => {
               <label className="block mb-2 text-sm font-semibold text-slate-200">Password</label>
               <input 
                 type="password" 
-                className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                placeholder="••••••••"
+                className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
                 value={password} 
                 onChange={(e) => setPassword(e.target.value)} 
                 required 
@@ -128,8 +125,7 @@ const Register = () => {
               <label className="block mb-2 text-sm font-semibold text-slate-200">Confirm Password</label>
               <input 
                 type="password" 
-                className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
-                placeholder="••••••••"
+                className="w-full px-4 py-3 bg-slate-700 border border-slate-600 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition"
                 value={confirmPassword} 
                 onChange={(e) => setConfirmPassword(e.target.value)} 
                 required 

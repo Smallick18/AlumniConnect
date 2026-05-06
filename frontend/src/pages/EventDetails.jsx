@@ -60,6 +60,8 @@ const EventDetails = () => {
     }
   };
 
+  const eventDate = event ? new Date(event.date) : null;
+  const isExpired = eventDate ? eventDate < new Date() : false;
   const isOrganizer = event?.organizer._id === user._id || user.role === 'Admin';
   const isRegistered = event?.attendees?.some(attendee => attendee._id === user._id);
   const attendeeCount = event?.attendees?.length || 0;
@@ -130,7 +132,7 @@ const EventDetails = () => {
 
                 <div className="bg-slate-700 rounded-lg p-6 border border-slate-600">
                   <h3 className="font-bold text-slate-400 text-sm mb-2">🎯 Status</h3>
-                  <p className="text-white text-2xl font-semibold">{isRegistered ? '✅ Registered' : '⏳ Not registered'}</p>
+                  <p className="text-white text-2xl font-semibold">{isExpired ? '⛔ Event Ended' : isRegistered ? '✅ Registered' : '⏳ Not registered'}</p>
                 </div>
               </div>
 
@@ -138,7 +140,9 @@ const EventDetails = () => {
               {!isOrganizer && (
                 <div className="bg-slate-700 rounded-lg p-6 border border-slate-600">
                   <h3 className="font-bold text-white text-lg mb-4">Your Registration</h3>
-                  {isRegistered ? (
+                  {isExpired ? (
+                    <p className="text-red-400 font-semibold">This event has ended and registrations are closed.</p>
+                  ) : isRegistered ? (
                     <div className="space-y-4">
                       <p className="text-green-400 font-semibold">✅ You are registered for this event</p>
                       <button 
