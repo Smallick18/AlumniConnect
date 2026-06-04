@@ -135,7 +135,7 @@
       width: 18px;
     }
   }
-
+  /* this will change the viewpoint according to the devices used*/
   @media (max-width: 1024px) {
     margin-top: 20px;
     flex-wrap: wrap;
