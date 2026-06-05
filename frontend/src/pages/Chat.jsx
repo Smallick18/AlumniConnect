@@ -53,6 +53,7 @@ const Chat = () => {
     }
   };
 
+
   const messagesEndRef = useRef(null);
 
   // Listen for incoming messages
