@@ -114,7 +114,7 @@ const Login = () => {
 
           <div className="mt-6 pt-6 border-t border-slate-700 text-center">
             <Link to="/" className="text-slate-400 hover:text-blue-400 text-sm transition">
-              ← Back to Home
+              ← Back to HOME
             </Link>
           </div>
         </div>
